@@ -1,0 +1,71 @@
+<html>
+<head>
+<title>Prometheus</title>
+<script>
+function restore() {
+var sys = require('sys');
+var exec = require('child_process').exec;
+function puts(error, stdout, stderr) { sys.puts(stdout) }
+var args = "~/Downloads/futurerestore-latest/futurerestore_macos -t " + document.getElementById("ticket").value + " --latest-sep --latest-baseband " + document.getElementById("ipsw").value;
+if(document.getElementById('nonce').checked) {
+    args = "~/Downloads/futurerestore-latest/futurerestore_macos -t " + document.getElementById("ticket").value + " --latest-sep --latest-baseband -w " + document.getElementById("ipsw").value;
+}
+if (document.getElementById('bb').checked) {
+    args = "~/Downloads/futurerestore-latest/futurerestore_macos -t " + document.getElementById("ticket").value + " --latest-sep --no-baseband " + document.getElementById("ipsw").value;
+}
+exec("open -a Terminal.app " + args, puts);
+}
+function download() {
+    var dload = document.getElementById('download');
+    if (dload.innerHTML == "Begin") {
+        document.title = 'Prometheus';
+        document.getElementById('setup').style.display = 'none';
+        document.getElementById('app').style.display = 'inline';
+    } else {
+    window.location = "http://api.tihmstar.net/builds/futurerestore/futurerestore-latest.zip";
+    document.title = "Click save";
+    dload.innerHTML = "Begin";
+}
+}
+</script>
+</head>
+<body>
+<center>
+<div id='setup'>
+<br><br><br><br><br><br>
+<h1>iLluminati</h1>
+<button id='download' onclick="download()" onmouseover='document.getElementById("download").style.background = "#5998f7"' onmouseout='document.getElementById("download").style.background = "transparent"'>Download futurerestore</button>
+</div>
+<div id='app'>
+<br><br>
+<h1>iLluminati</h1>
+<input type="text" id="ipsw" placeholder="Path to iPSW"><br><br>
+<input type="text" id="ticket" placeholder="Path to SHSH2 blob"><br><br>
+<span>Use noncecollision</span><input type="checkbox" id="nonce"><br><br>
+<span>I don't need a baseband</span><input type="checkbox" id="bb"><br><br>
+<button id='restore' onclick="restore()" onmouseover='document.getElementById("restore").style.background = "#5998f7"' onmouseout='document.getElementById("restore").style.background = "transparent"'>Restore!</button>
+</div>
+</center>
+</body>
+<style>
+#app {
+    display: none;    
+}
+h1, span {
+    font-family: Arial;
+    font-weight: 100;
+    color: white;
+}
+button, input {
+    color: white;
+    border: 2px solid #5998f7;
+    background: transparent;
+    outline: 0;
+    font-size: 15pt;
+}
+body {
+    background: #109646;
+}
+::-webkit-input-placeholder {color:white;}
+</style>
+</html>

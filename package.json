@@ -1,0 +1,16 @@
+{
+  "name": "prometheus",
+  "version": "1.0.0",
+  "description": "A futurerestore GUI made with electron.",
+  "main": "main.js",
+  "dependencies": {
+    "electron": "^1.6.11",
+    "shelljs": "^0.7.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "ArtikusHG",
+  "license": "ISC"
+}
