@@ -9,3 +9,4 @@ iLluminati currently only compatible with macOS, but if you're a developer, you'
 - cd /path/to/illuminati/folder
 - npm start
 After this, you'll see a new window.
+# PSA: this is an electron app.
